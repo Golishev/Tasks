@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace dfdf
+{
+	class MainClass
+	{
+		public static void Main (string[] args)
+		{
+			List<int> numbers = new List<int>();
+
+			Random random = new Random ();
+			for (int i = 0; i < 10; i++) 
+			{
+				numbers.Add (random.Next (1, 101));
+			}
+			Console.WriteLine();
+			foreach (int number in numbers) 
+			{
+				Console.Write (number + "");
+			}
+			Console.WriteLine();
+
+			int max = numbers.Max();
+			int min = numbers.Min();
+
+			numbers.Sort();
+
+			Console.WriteLine();
+			foreach (int number in numbers)
+			{
+				Console.Write(number + "");
+			}
+			Console.WriteLine();
+		}
+	}
+}
