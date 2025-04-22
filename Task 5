@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Создание списка строк
+        List<string> names = new List<string>
+        {
+            "Аня", "Борис", "Вика", "Аня", "Денис",
+            "Елена", "Федор", "Галина", "Аня", "Игорь"
+        };
+
+        // 2. Запрос строки для поиска и строки для замены
+        Console.Write("Введите строку для поиска: ");
+        string search = Console.ReadLine();
+
+        Console.Write("Введите строку для замены: ");
+        string replacement = Console.ReadLine();
+
+        // 3. Замена всех вхождений
+        for (int i = 0; i < names.Count; i++)
+        {
+            if (names[i] == search)
+            {
+                names[i] = replacement;
+            }
+        }
+
+        // 4. Вывод измененного списка
+        Console.WriteLine("Измененный список:");
+        foreach (string name in names)
+        {
+            Console.Write(name + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
