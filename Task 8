@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Создание случайного списка (с отрицательными числами)
+        List<int> numbers = new List<int>();
+        Random random = new Random();
+
+        for (int i = 0; i < 15; i++)
+        {
+            numbers.Add(random.Next(-10, 11)); // от -10 до 10
+        }
+
+        Console.WriteLine("Список чисел:");
+        Console.WriteLine(string.Join(", ", numbers));
+
+        // 2. Алгоритм Кадане
+        int maxSoFar = numbers[0];
+        int maxEndingHere = numbers[0];
+        int start = 0, end = 0, s = 0;
+
+        for (int i = 1; i < numbers.Count; i++)
+        {
+            if (numbers[i] > maxEndingHere + numbers[i])
+            {
+                maxEndingHere = numbers[i];
+                s = i;
+            }
+            else
+            {
+                maxEndingHere += numbers[i];
+            }
+
+            if (maxEndingHere > maxSoFar)
+            {
+                maxSoFar = maxEndingHere;
+                start = s;
+                end = i;
+            }
+        }
+
+        // 3. Вывод подсписка и суммы
+        Console.WriteLine("Подсписок с максимальной суммой:");
+        for (int i = start; i <= end; i++)
+        {
+            Console.Write(numbers[i] + " ");
+        }
+        Console.WriteLine("\nСумма: " + maxSoFar);
+    }
+}
