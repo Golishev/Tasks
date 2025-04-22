@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Создание списка с дубликатами
+        List<int> numbers = new List<int> { 5, 3, 8, 3, 9, 5, 1, 8, 2, 1 };
+
+        // 2. Вывод исходного списка
+        Console.WriteLine("Исходный список:");
+        foreach (int num in numbers)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+
+        // 3. Удаление дубликатов (без HashSet)
+        List<int> uniqueNumbers = new List<int>();
+        foreach (int num in numbers)
+        {
+            bool isDuplicate = false;
+            foreach (int unique in uniqueNumbers)
+            {
+                if (num == unique)
+                {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate)
+            {
+                uniqueNumbers.Add(num);
+            }
+        }
+
+        // 4. Вывод измененного списка
+        Console.WriteLine("Список без дубликатов:");
+        foreach (int num in uniqueNumbers)
+        {
+            Console.Write(num + " ");
+        }
+        Console.WriteLine();
+    }
+}
