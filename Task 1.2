@@ -1,42 +1,40 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace dfdf
+class Program
 {
-	class MainClass
-	{
-		public static void Main (string[] args)
-		{
-			List<string> cites = new List<string>() { "Moscow", "Prana", "Dresden", "Berlin", "Roma", "Wien", "Warszawa", "London", "Dublin", "Oxford" };
+    static void Main()
+    {
+        // 1. Создание списка строк
+        List<string> cities = new List<string>
+        {
+            "Москва", "Минск", "Милан", "Киев", "Копенгаген",
+            "Казань", "Мадрид", "Мельбурн", "Караганда", "Кельн"
+        };
 
+{ "Moscow", "Prana", "Dresden", "Berlin", "Roma", "Wien", "Warszawa", "London", "Dublin", "Oxford" };
 
+        // 2. Запрос у пользователя буквы
+        Console.Write("Введите первую букву для фильтрации: ");
+        string input = Console.ReadLine();
 
-			List<int> numbers = new List<int>();
+        if (string.IsNullOrEmpty(input) || input.Length != 1)
+        {
+            Console.WriteLine("Ошибка: введите одну букву.");
+            return;
+        }
 
-			Random random = new Random ();
-			for (int i = 0; i < 10; i++) 
-			{
-				numbers.Add (random.Next (1, 101));
-			}
-			Console.WriteLine();
-			foreach (int number in numbers) 
-			{
-				Console.Write (number + " ");
-			}
-			Console.WriteLine();
+        char filterChar = input.ToLower()[0];
 
-			int max = numbers.Max();
-			int min = numbers.Min();
-
-			numbers.Sort();
-
-			Console.WriteLine();
-			foreach (int number in numbers)
-			{
-				Console.Write(number + " ");
-			}
-			Console.WriteLine();
-		}
-	}
+        // 3. Вывод городов, начинающихся с указанной буквы
+        Console.WriteLine($"Города, начинающиеся на '{filterChar}':");
+        foreach (string city in cities)
+        {
+            if (!string.IsNullOrEmpty(city) && char.ToLower(city[0]) == filterChar)
+            {
+                Console.WriteLine(city);
+            }
+        }
+    }
 }
+
