@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // 1. Создание случайного списка чисел
+        List<int> numbers = new List<int>();
+        Random random = new Random();
+        for (int i = 0; i < 15; i++)
+        {
+            numbers.Add(random.Next(1, 50));
+        }
+
+        Console.WriteLine("Исходный список:");
+        Console.WriteLine(string.Join(", ", numbers));
+
+        // 2. Нахождение LIS с помощью динамического программирования
+        int n = numbers.Count;
+        int[] dp = new int[n];
+        int[] prev = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            dp[i] = 1;
+            prev[i] = -1;
+        }
+
+        int maxLength = 1;
+        int lastIndex = 0;
+
+        for (int i = 1; i < n; i++)
+        {
+            for (int j = 0; j < i; j++)
+            {
+                if (numbers[i] > numbers[j] && dp[i] < dp[j] + 1)
+                {
+                    dp[i] = dp[j] + 1;
+                    prev[i] = j;
+                }
+            }
+
+            if (dp[i] > maxLength)
+            {
+                maxLength = dp[i];
+                lastIndex = i;
+            }
+        }
+
+        // 3. Восстановление LIS
+        List<int> lis = new List<int>();
+        while (lastIndex != -1)
+        {
+            lis.Insert(0, numbers[lastIndex]);
+            lastIndex = prev[lastIndex];
+        }
+
+        // 4. Вывод результата
+        Console.WriteLine("Наибольшая возрастающая подпоследовательность:");
+        Console.WriteLine(string.Join(", ", lis));
+        Console.WriteLine("Длина: " + lis.Count);
+    }
+}
