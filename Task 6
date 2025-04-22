@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Random random = new Random();
+
+        // 1. Создание двух списков
+        List<int> list1 = new List<int>();
+        List<int> list2 = new List<int>();
+
+        for (int i = 0; i < 10; i++)
+        {
+            list1.Add(random.Next(1, 21));
+            list2.Add(random.Next(1, 21));
+        }
+
+        // 2. Вывод исходных списков
+        Console.WriteLine("Список 1: " + string.Join(", ", list1));
+        Console.WriteLine("Список 2: " + string.Join(", ", list2));
+
+        // 3. Объединение без дубликатов (без HashSet)
+        List<int> merged = new List<int>();
+
+        void AddUnique(List<int> source)
+        {
+            foreach (int item in source)
+            {
+                bool isDuplicate = false;
+                foreach (int existing in merged)
+                {
+                    if (item == existing)
+                    {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+                if (!isDuplicate)
+                {
+                    merged.Add(item);
+                }
+            }
+        }
+
+        AddUnique(list1);
+        AddUnique(list2);
+
+        // 4. Сортировка по убыванию (пузырьковая сортировка)
+        for (int i = 0; i < merged.Count - 1; i++)
+        {
+            for (int j = 0; j < merged.Count - 1 - i; j++)
+            {
+                if (merged[j] < merged[j + 1])
+                {
+                    int temp = merged[j];
+                    merged[j] = merged[j + 1];
+                    merged[j + 1] = temp;
+                }
+            }
+        }
+
+        // 5. Вывод результата
+        Console.WriteLine("Объединённый и отсортированный список без дубликатов:");
+        Console.WriteLine(string.Join(", ", merged));
+    }
+}
