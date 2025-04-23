@@ -13,7 +13,7 @@ class Program
 			"Ленинград","Ростов на Дону","Припять","Невинномыск","Урал"
 		};
 		string input = Console.ReadLine();
-		if (string.IsNullOrEmpty(input) || input.Length != 1)
+		if (input.Length != 1)
 		{
 			return;
 		}
@@ -21,7 +21,7 @@ class Program
 		char filterChar = input.ToLower()[0];
 		foreach (string city in cities)
 		{
-			if (!string.IsNullOrEmpty(city) && char.ToLower(city[0]) == filterChar)
+			if (char.ToLower(city[0]) == filterChar)
 			{
 				Console.WriteLine(city);
 			}
