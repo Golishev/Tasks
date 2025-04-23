@@ -17,7 +17,6 @@ class Program
 		{
 			return;
 		}
-
 		char filterChar = input.ToLower()[0];
 		foreach (string city in cities)
 		{
