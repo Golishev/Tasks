@@ -3,36 +3,28 @@ using System.Collections.Generic;
 
 class Program
 {
-    static void Main()
-    {
-        // 1. Создание списка строк
-        List<string> cities = new List<string>
-        {
-            "Москва", "Минск", "Милан", "Оскфорд", "Дрезден",
-            "Казань", "Берлин", "Прана", "Варшава", "Кельн"
-        };
+	static void Main()
+	{
+		List<string> cities = new List<string>
+		{
+			"Москва", "Минск", "Милан", "Оскфорд", "Дрезден",
+			"Казань", "Берлин", "Прана", "Варшава", "Кельн",
+			"Омск","Норильск","Владивосток","Севастополь","Якутск",
+			"Ленинград","Ростов на Дону","Припять","Невинномыск","Урал"
+		};
+		string input = Console.ReadLine();
+		if (string.IsNullOrEmpty(input) || input.Length != 1)
+		{
+			return;
+		}
 
-        // 2. Запрос у пользователя буквы
-        Console.Write("Введите первую букву для фильтрации: ");
-        string input = Console.ReadLine();
-
-        if (string.IsNullOrEmpty(input) || input.Length != 1)
-        {
-            Console.WriteLine("Ошибка: введите одну букву.");
-            return;
-        }
-
-        char filterChar = input.ToLower()[0];
-
-        // 3. Вывод городов, начинающихся с указанной буквы
-        Console.WriteLine($"Города, начинающиеся на '{filterChar}':");
-        foreach (string city in cities)
-        {
-            if (!string.IsNullOrEmpty(city) && char.ToLower(city[0]) == filterChar)
-            {
-                Console.WriteLine(city);
-            }
-        }
-    }
+		char filterChar = input.ToLower()[0];
+		foreach (string city in cities)
+		{
+			if (!string.IsNullOrEmpty(city) && char.ToLower(city[0]) == filterChar)
+			{
+				Console.WriteLine(city);
+			}
+		}
+	}
 }
-
