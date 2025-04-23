@@ -6,7 +6,10 @@ class Program
     static void Main()
     {
         // 1. Создание списка с дубликатами
-        List<int> numbers = new List<int> { 5, 3, 8, 3, 9, 5, 1, 8, 2, 1 };
+        List<int> numbers = new List<int> 
+        { 
+        5, 3, 8, 3, 9, 5, 1, 8, 2, 1 
+        };
 
         // 2. Вывод исходного списка
         Console.WriteLine("Исходный список:");
