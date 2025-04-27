@@ -1,1 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
+class Program
+{
+    static void Main()
+    {
+        const int size = 1_000_000;
+        List<int> numbers = new List<int>();
+        Random random = new Random();
+
+        // Генерация 1 000 000 случайных чисел
+        for (int i = 0; i < size; i++)
+        {
+            numbers.Add(random.Next(1, 10001)); // диапазон 1-10000, чтобы были дубликаты
+        }
+
+        // Засекаем время
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+
+        // Поиск уникальных элементов вручную (без HashSet)
+        List<int> uniques = new List<int>();
+        for (int i = 0; i < numbers.Count; i++)
+        {
+            bool isUnique = true;
+            for (int j = 0; j < uniques.Count; j++)
+            {
+                if (numbers[i] == uniques[j])
+                {
+                    isUnique = false;
+                    break;
+                }
+            }
+
+            if (isUnique)
+            {
+                uniques.Add(numbers[i]);
+            }
+        }
+
+        stopwatch.Stop();
+
+        // Результат
+        Console.WriteLine($"Количество уникальных чисел: {uniques.Count}");
+        Console.WriteLine($"Время выполнения: {stopwatch.Elapsed.TotalSeconds:F2} секунд");
+    }
+}
